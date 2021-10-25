@@ -1,0 +1,25 @@
+apiVersion: training.eduk8s.io/v1alpha2
+kind: Workshop
+metadata:
+  name: tko-demo
+spec:
+  title: Tanzu for Kubernetes Operations Demo
+  description: A demo of Tanzu for Kubernetes Operations
+  vendor: vmware.com
+  difficulty: beginner
+  duration: 30m
+  url: https://github.com/cdelashmutt-pivotal/tko-demo
+  content:
+    #image: quay.io/eduk8s/lab-markdown-sample:master
+    files: github.com/eduk8s/lab-markdown-sample
+  session:
+    namespaces:
+      budget: small
+    applications:
+      terminal:
+        enabled: true
+        layout: split
+      console:
+        enabled: true
+      editor:
+        enabled: true

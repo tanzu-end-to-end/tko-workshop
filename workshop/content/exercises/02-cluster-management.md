@@ -1,0 +1,20 @@
+So now we have our application, and our database service deployed to one cluster.  But the landing zone for your applications isn't likely to just be one cluster.  You have multiple datacenters, and increasingly one more of those datacenters is in the public cloud.  Your applications are going to land on clusters that are provided for you by another provider, or are managed for you as a service in the public cloud.  Are all those clusters set up and secured according to best practices and meeting your standards?
+
+Tanzu includes a supported, standards compliant Kubernetes distribution that can run across both public and private clouds and is closely aligned with the open source, upstream Kubernetes.  Tanzu makes it simple for your administrators to deploy and manage Kubernetes everywhere.  And we even offer an integrated Tanzu Kubernetes distribution into the core of vSphere, so that your administrators have the absolute best Kubernetes experience possible on your VMware infrastructure.
+
+But the value of Tanzu isn't linked strictly to our own Kubernetes distribution.  Tanzu gives you the tools ensure that all of your clusters, VMware provided or not, have the stricted security and compliance policies defined, are protected from catastrophes, and are standards compliant.
+
+Let's put on our cluster operator and app operator’s hat for a moment and explore
+
+* Go to TMC browser tab.  Show the cluster group and how it contains clusters from different providers.
+* Click on the "Policies" section and select the "Assignment" subsection.  Call out that TMC allows you to apply policies vertically from the entire organization down to individual clusters.  We can also apply policies horizontally at an application namespace level spanning multiple clusters.  
+* Show the "Access" tab and mention it provides central access control and rights management for your clusters or namespaces.  
+* Click on the "Image Registry" tab and select "Workspaces".  Call out how you can ensure that clusters only pull containers from your trusted registries.
+* Mention network policies but skip clicking on it unless your customer has a specific interest there
+* Click on the "Security" tab.  Click "Create a security policy" and note that we provide templates that already contain best practices out of the box.  
+* Mention quota controls to prevent someone from hogging the cluster, but skip clicking it unless your customer has a specific interest.
+* Then mention that if those policies aren't enough, TMC provides a completely customizable way to write compliance rules that helps you shift left best practices for running applications.  Click on the "Templates" subsection under the "Policies" section on the left side bar, and click on the "deploymentreplicaminimum" template.  Explain how this rule ensures that developers are only allowed to deploy applications that run multiple instances so that you can promote resiliency standards for your production applications.
+* Click on "Inspections" and show how you can run compliance scans against your clusters to make sure they meet standards like Kubernetes API standards and CIS Benchmark standards.  This can be a huge help for your auditors to provide documentation for regulated applications.  Click into failure for CIS benchmarks.
+* Click on the "Cluster Groups" in the left navigation panel, click the "end-to-end" cluster group name in the resulting list, and then click on the "pez-tools" cluster name in the list. Scroll down to the bottom of the resulting page and highlight the data protection capability to backup your application manifests and persistent data.  Your data is backed up to secured cloud storage that only you administrators have the keys to access.  VMware can never access your data.
+
+Tanzu Mission Control is implementing a Developer Console as well. If you click on "Applications" in the TMC sidebar, you will see the application instance that you just deployed in the {{ session_namespace }} namespace.

@@ -1,0 +1,12 @@
+name: Tanzu for Kubernetes Operations Demo
+
+modules:
+    activate:
+    - workshop-overview
+    - setup-environment
+    - exercises/01-container-registry
+    - exercises/02-cluster-management
+    - exercises/03-enterprise-observability
+    - exercises/04-global-namespaces
+    - exercises/05-tanzu-labs
+    - workshop-summary

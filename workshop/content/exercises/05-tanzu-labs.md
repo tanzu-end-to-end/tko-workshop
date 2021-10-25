@@ -1,0 +1,1 @@
+Set up the best platform and practices by pairing with Tanzu Labs.  We bring years of experience helping customers of all kinds to implement cloud native operations and platforms that fit their particular needs.  This way you can realize business value quickly, and set up your operations practices for continual improvement.  Go fast, forever.

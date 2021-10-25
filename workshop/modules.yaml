@@ -1,0 +1,25 @@
+modules:
+    workshop-overview:
+        name: Workshop Overview
+        exit_sign: Setup Environment
+    setup-environment:
+        name: Setup Environment
+        exit_sign: Start Demo
+    exercises/01-container-registry:
+        name: Container Registry
+        exit_sign: Cluster Management
+    exercises/02-cluster-management:
+        name: Cluster Management
+        exit_sign: Enterprise Observability
+    exercises/03-enterprise-observability:
+        name: Enterprise Observability
+        exit_sign: Global Namespaces
+    exercises/04-global-namespaces:
+        name: Global Namespaces
+        exit_sign: Tanzu Labs
+    exercises/05-tanzu-labs:
+        name: Tanzu Labs
+        exit_sign: Demo Summary
+    workshop-summary:
+        name: Demo Summary
+        exit_sign: Finish Demo
