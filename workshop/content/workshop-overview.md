@@ -22,4 +22,4 @@ Day n,
 - Upgrade Clusters to the latest Kubernetes Version automatically
 - Provide/Restore clusters from backup 
 
-This demo will walk you through the important capabilities that TKO provides to support the outcomes you are striving for in your application modernization efforts.
+This demo will walk you through the important capabilities that are available in Tanzu for Kubernetes Operations.
