@@ -1,4 +1,4 @@
-We're going to be using Tanzu to deploy an application, observe the metrics for that application and supporting infrastructure, manage the cluster hosting that application, and ensure secure communications between application components.
+We are going to use Tanzu Mission control to build, manage lifecycle and backup Kubernetes clusters across multiple cloud providers. We will then implement policies that will help provide self-service role based access to developers, secure container runtime, forward metrics to Tanzu Obersrvability and implement Secure communications on application services running on top of these clusters using Tanzu Service Mesh.
 
 ## Harbor
 
