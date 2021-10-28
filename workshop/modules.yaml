@@ -5,21 +5,18 @@ modules:
     setup-environment:
         name: Setup Environment
         exit_sign: Start Demo
-    exercises/01-container-registry:
-        name: Container Registry
-        exit_sign: Cluster Management
-    exercises/02-cluster-management:
-        name: Cluster Management
+    exercises/01-developer-self-service:
+        name: Developer Self-Service
+        exit_sign: Implement Policy
+    exercises/02-implement-policy:
+        name: Implement Access, Security, Quota and Backup Policies
         exit_sign: Enterprise Observability
     exercises/03-enterprise-observability:
         name: Enterprise Observability
-        exit_sign: Global Namespaces
-    exercises/04-global-namespaces:
-        name: Global Namespaces
-        exit_sign: Tanzu Labs
-    exercises/05-tanzu-labs:
-        name: Tanzu Labs
-        exit_sign: Demo Summary
+        exit_sign: Upgrades and Backup
+    exercises/04-upgrade-backup:
+        name: Upgrades and Backup
+        exit_sign: Summary
     workshop-summary:
         name: Demo Summary
         exit_sign: Finish Demo
