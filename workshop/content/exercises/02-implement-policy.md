@@ -47,8 +47,11 @@ kubectl get pods -n {{session_namespace}}
   - Copy the YAML  config
   - Paste the value in a Config File
   
-```file: ~/kubeconfig-gke-psp-demo.yaml
+```editor:open-file
+file: ~/kubeconfig-gke-psp-demo.yaml
+line: 1
 ```
+
 - Login to TMC
   - Fetch API Token for TMC, click on the dropdown of your username on the top right hand corner of Tanzu Mission Control, click " My Account" -->Click on the `API tokens` tab, copy existing Token or click on `Generate a new API Token` and copy that.
   - 
