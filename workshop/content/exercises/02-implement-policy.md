@@ -47,9 +47,9 @@ kubectl get pods -n {{session_namespace}}
   - Copy the YAML  config
   - Paste the value in a Config File
   
-```editor:open-file
+```editor:append-lines-to-file
 file: ~/kubeconfig-gke-psp-demo.yaml
-line: 1
+text: |
 ```
 
 - Login to TMC
