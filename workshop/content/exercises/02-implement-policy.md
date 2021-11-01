@@ -49,6 +49,16 @@ kubectl get pods -n {{session_namespace}}
   
 ```file: ~/kubeconfig-gke-psp-demo.yaml
 ```
+- Login to TMC
+  - Fetch API Token for TMC, click on the dropdown of your username on the top right hand corner of Tanzu Mission Control, click " My Account" -->Click on the `API tokens` tab, copy existing Token or click on `Generate a new API Token` and copy that.
+  - 
+```execute
+tmc login 
+```
+When Prompted to Provide the API Token, paste the one that oyu just copied. Give a context name like `tmc-tko` and `aws-hosted` for `Mangement_cluster` and `aws` for Provisioner name, like shown in the below snapshot.
+
+![TMC Access Token](../images/tmc-access-api.png)
+
   - Deploy the same `nginx` application on this cluster 
   
 ```execute
