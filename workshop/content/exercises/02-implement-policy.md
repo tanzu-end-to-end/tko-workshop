@@ -25,7 +25,7 @@ THe Pod Security Policy can be overridden with the Button `Disable Native Pod Se
 
 Let's validate this by trying to deploy a container that needs privileged access to run.
 
-- On the Policies page, Security tab, expans the Cluster Group `e2e-amer`, Notice that cluster group has the PSP `Dhubao-Strict` applied with default PSP disabled.
+- On the Policies page, Security tab, expand the Cluster Group `e2e-amer`, Notice that cluster group has the PSP `Dhubao-Strict` applied with default PSP disabled.
 - On the same page, click on the Cluster Group `tko-sps-strict` , notice the Direct policy on it called `psp=strict` this cluster group has the default PSP enabled.
 
 - Deploy an app with root privileges on the cluster `e2e-amer ` that has no default PSP enabled
@@ -75,3 +75,53 @@ Notice, the pods do not get created
 kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml get pods  -n {{session_namespace}}
 ```
 This is because the PSP policy is enabled on the cluster.
+
+## Image Download Policy
+
+The best part about containers is they are ultra-portable. They can be layered like a cake to build brand new images. A Container image from the internet can be taken and used to add a new binary to build something custom. That's the appeal of containers. However, this means Application Development teams can download images from anywhere on the Internet and build new images inheriting vulnerabilities.
+
+There are multiple ways to implement policies that make sure container images that get deployed are safe. 
+
+- Implement Vulnerability Scanning in the container Registry that stores the container images, and prevents images with critical vulnerabilities from being deployed (Harbor)
+- Implement Policies to not allow images from certain Image Registries (TMC)
+- Policy that prevents container images with no digest from deploying (TMC)
+- Stop container images with latest tag from deploying. (TMC)
+- Blacklist certain images/repo's (TMC)
+
+Tanzu Mission Control, part of the the Tanzu for Kubernetes Operations solution provides out of the box policies that can be applied to a fleet of clusters spread across Multiple Clouds.
+
+Tanzu Mission control has Image based policies that can be applied to namespaces within a cluster. These policies can be applied fleet-wide across clusters and clouds by grouping namespaces together in a logical group called `workspaces`
+
+- Go to the tab with Tanzu Mission Control --> Click on `Policies`  from the left hand menu --> click on `Assignments`
+- Click on the `Image Registry` tab --> Click on `Workspaces`
+- Select the workspace `tko-demo`
+- You will notice a Direct Image Registry Policy applied called `no-busybox`
+- Expand the policy `no-busybox` and click `EDIT` --> Click the first `Rule`
+
+You will notice this is a custom policy that blocks any container image that has the name `busybox` on it. Like below
+![TMC Image Policy](../images/tmc-image-policy.png)
+
+- Add a new rule and take a look at the other Image based policies that can be applied.
+
+Let's try to deploy `BusyBox` image on the namespace `tko-image-policy ` in the cluster `gke-psp-demo`
+
+- Make sure the namespace exists on the cluster
+```execute
+kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml get ns
+```
+
+- Create a deployment with the image`busybox` from Docker Hub
+
+```execute
+kubectl --kubeconfig=kubeconfig-gke-psp-demo.yml create deployment busybox --image=busybox -n tko-image-policy
+```
+
+Notice the deployment is stuck and wont progress because of the image rules
+```execute
+kubectl --kubeconfig=kubeconfig-gke-psp-demo.yml describe deployment -n tko-image-policy
+```
+Notice the deployment isn't creating any replicas.
+
+## Quota Policies
+
+Application Development teams love 
