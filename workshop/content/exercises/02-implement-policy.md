@@ -155,7 +155,3 @@ Tanzu makes the process of connecting applications running across clouds simple 
 * Click on the "Cancel" button to exit the dialog.
 
 And there you have it!  Tanzu helps you address all those challenges we discussed in the beginning around developing, delivering and operating resilient applications that meet the strictest security standards and follow best practices for cloud native applications.
-
-* Refresh the Pet Clinic app.
-
-Thanks for watching!

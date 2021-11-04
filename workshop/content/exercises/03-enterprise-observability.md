@@ -1,6 +1,6 @@
 A key part of operating resilient cloud applications is monitoring them.  But it can be challenging to ensure that all aspects of your applications and infrastructure are captured.  Monitoring point solutions can create silos of data, and can require a lot of infrastructure to store all the data points that might be significant in root cause analysis. 
 
-Tanzu enables you to offer observability capabilities as a service to your developers and operators.  And Tanzu accelerates your teams by providing out of the box views of application and infrastructure KPIs that are fully customizable.
+Tanzu for Kubernetes Operations enables you to offer observability capabilities as a service to your developers and operators.  And Tanzu accelerates your teams by providing out of the box views of application and infrastructure KPIs that are fully customizable.
 
 * In the TMC browser tab, click on the three vertical dots next to the "Tanzu Observability by Wavefront" item in the "Integrations" section for the "pez-tools" cluster and select "Open".  
 * Explore the graphs and data a bit.  Show the overall cluster view that you start in, but then click on the "Nodes" link in the "Kubernetes Objects" panel near the top of the dashboard.  This highlights that TO gives you multiple perspectives to assess the health of your clusters and infrastructure.  
