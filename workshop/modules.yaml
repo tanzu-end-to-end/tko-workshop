@@ -6,7 +6,7 @@ modules:
         name: Setup Environment
         exit_sign: Start Demo
     exercises/01-developer-self-service:
-        name: Developer Self-Service
+        name: Build Consistent Clustes & Enable Developer Self-Service
         exit_sign: Implement Policy
     exercises/02-implement-policy:
         name: Implement Access, Security, Quota and Backup Policies
