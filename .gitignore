@@ -11,3 +11,5 @@
 .webdav
 .yarn
 *.swp
+.vscode
+.DS_Store
