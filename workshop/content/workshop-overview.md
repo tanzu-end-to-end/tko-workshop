@@ -4,7 +4,7 @@ Tanzu for Kubernetes Operations helps operations team build, manage, secure and 
 
 On Day 0, Standardize Cluster provisioning and enable Developer self-service access to Kubernetes clusters across multi-cloud environements
 
-- Tanzu for Kubernetes operations helps deploy consistent, scalable Kubernetes clusters that automatically install Cloud/infrastructure specific Kubernetes Drivers like CNI, CSI such that the clusters are ready and can cater to development teams needs around provisioning persistent storage volumes and Networking Services.
+- Tanzu for Kubernetes operations helps deploy consistent, scalable Kubernetes clusters that automatically install Cloud/Infrastructure specific Kubernetes Drivers like CNI, CSI such that the clusters are ready and can cater to development teams needs around provisioning persistent storage volumes and Networking Services.
 - Development teams can be given Role based Access Control (RBAC) to clusters authenticated via an Identity provider. Development teams can then access these clusters in a self-service manner. 
 
 For Day 1, Implement Access, Security, Quota and Backup Policies
@@ -17,9 +17,9 @@ For Day 2, Monitor & Analyse Full stack Metrics and Logs.
 - Operation teams can monitor metrics across the full stack , including applications deployed by dev teams.
 - Collect and analyze logs centrally.
 
-Day n,
+Day 0-n,
 
 - Upgrade Clusters to the latest Kubernetes Version automatically
-- Provide/Restore clusters from backup 
+- Backup/Restore cluster resorces including persistent volumes
 
 This demo will walk you through the important capabilities that are available in Tanzu for Kubernetes Operations.
