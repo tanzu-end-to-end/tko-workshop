@@ -33,18 +33,22 @@ Note: Do not hit `create cluster` at the end of this workflow, and if you do cre
 
 For e.g, see the below screen shot of the wizard
 
-![Cluster Create](../images/vsphre-cluster-create.png))
+![Cluster Create](../images/aws-cluster-create.png))
 
-Note: Please Do not hit `create cluster` at the end of this workflow, and if you do create a cluster please delete them once the demo is over.
+Note: Please Do not hit `create cluster` at the end of this workflow, exit the wizaed by clicking on the `Clsuter` list on the left hand side page. If you do create a cluster please delete them once the demo is over.
 
 ## Providing RBAC and Authentication to Development Teams.
+
+ Kubernetes API is very important as it has the capability of accessing and modifying infrastructure objects. Kubernetes has its won Role based access to the Kubernetes API that determine which user has what level of access. However, by default Kubernetes does not provide any Identity backed Authentication. Tanzu Mission Control provides the capability to Automate Role Based Access Control to the API authenticated by your Organizations Identity services. VMware Cloud Services can federate to your LDAP/AD instance. Tanzu Mission Control will map a user from your organization to a role within the Kubernetes Cluster. This is the `Access Policy` and can be applied in a blanket mode across clusters at once.
 
 - Click on `Policies` from the left hand navigation menu, click `Assignments` --> Click `Access` tab.
 - You will see a list of Cluster Groups with various clusters in it on the left hand side and access policies on the right hand, like below
 
 ![Cluster Access Policy](../images/access-rbac.png)
 
-- Click on the Direct Access Polices and click the button `Create Role Binding`
+- Click on the Cluster Group `tko-psp-demo` from the cluster groups list and expand it
+- Click on the Direct Access Polices on the right and click the button `Create Role Binding`
 - Select the Kubernetes Role from the `Roles` dropdown
-- Add a user with email address or select from drop-down list.
-- This will enable the user to access the cluster with Identity that is already Configured at the Organization.
+- A user from the organizations identity provider can be added with an email ID or an imported drop-down list.
+- Exit out of th wizard by clicking the `Cancel` button.
+- Notice the existing role binding given to the `Tanzu Dev user`

@@ -1,8 +1,8 @@
-One of the key reason Kubernetes has grown so popular is, It provides Application Development teams an single API to drive infrastructure according to their application requirements. Application Development teams do not need to understand how the backend infrastructure runs, whether its a Public/Hybrid cloud or on-prem Datacenter. If they need a storage volume provisioned or a Load Balancer Provisioned, it's a simple Kubernetes API call away. Kubernetes drives the backend infrastructure based on the API call request and provisions/changes Compute, Storage and Network accordingly.
+One of the key reason Kubernetes has grown so popular is, It provides Application Development teams a single API to drive infrastructure according to their application requirements. Application Development teams do not need to understand how the backend infrastructure runs, whether its a Public/Hybrid cloud or on-prem Datacenter. If they need a storage volume provisioned or a Load Balancer Provisioned, it's a simple Kubernetes API call away. Kubernetes drives the backend infrastructure based on the API call request and provisions/changes Compute, Storage and Network accordingly.
 
 While this Kubernetes capability makes the day to day lot more streamlined and simplified for Application Development teams, it also gives Development teams unbound access to the Infrastructure. They can drive as many storage volumes, compute instances or Load Balancers needed etc. They can drive external traffic to applications/databases within the security perimeter of an Organization, or expose internal data. They can run rouge containers with vulnerabilities etc. As such, running Kubernetes platform with appropriate polices that implement security best practices is imperative.
 
-Tanzu Mission Control provides out of the box policies that can be applied to Kubernetes Clusters across multiple cloud and on-prem environments. Tanzu Mission Control also provides a way to build custom polices based on an Organizations unique requirements.
+Tanzu Mission Control provides out of the box policies that can be applied in a blanket mode to Kubernetes Clusters across multiple cloud and on-prem environments. Tanzu Mission Control also provides a way to build custom polices based on an Organizations unique requirements.
 
 ## Implement Secure access policy
 
@@ -10,7 +10,7 @@ Kubernetes defines various Role based access Control policies to its API. Tanzu 
 
 ## Implement Pod Security Policies
 
-Containers are processes that run on a given Kubernetes Host, they can have access to host file systems, networks, host namespaces, password files, listen to traffic on the host etc. An application running in a container can see host/system level objects. To prevent containers from doing so, Kubernetes has created Admission Controllers that check the addition of a Pod based on a set of Pod Security Policies (PSP's). 
+Containers are the base unit of deployment that runs any application on Kubernetes. Containers are processes that run on a given Kubernetes Host, they can have access to the host file systems, networks, host namespaces, password files, listen to traffic on the host etc. An application running in a container can see host/system level objects. To prevent containers from doing so, Kubernetes has created Admission Controllers that check the provisioning of a Pod based on a set of Pod Security Policies (PSP's). Its important to not let containers access host based resources unless necessary.By Default Kubernetes does not implement any pod Security Policies.
 
 Tanzu Mission Control by default implements Pod Security Policies around running pods with root access, Privileged mode, access to host networks , volumes etc.
 
@@ -26,16 +26,18 @@ THe Pod Security Policy can be overridden with the Button `Disable Native Pod Se
 Let's validate this by trying to deploy a container that needs privileged access to run.
 
 - On the Policies page, Security tab, expand the Cluster Group `e2e-amer`, Notice that cluster group has the PSP `Dhubao-Strict` applied with default PSP disabled.
-- On the same page, click on the Cluster Group `tko-sps-strict` , notice the Direct policy on it called `psp=strict` this cluster group has the default PSP enabled.
+- On the same page, click on the Cluster Group `tko-psp-demo` , notice the Direct policy on it called `psp-strict`, edit this policy by clickin on it and selecting `edit`, notice this policy has the default PSP enabled.
 
 - Deploy an app with root privileges on the cluster `e2e-amer ` that has no default PSP enabled
 
+- Go to the workshop tab, on the `Terminal` Tab 
+  
 ```execute
 kubectl create deployment nginx --image=nginx -n {{session_namespace}}
 ```
 Notice the pods do get created because default PSP is disabled on this cluster.
 
-```
+```execute
 kubectl get pods -n {{session_namespace}}
 ```
 
