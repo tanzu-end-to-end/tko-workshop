@@ -1,15 +1,17 @@
-Building kubernetes Clusters on various cloud/Infrastructure environments can be non-trivial task, from an operations perspective there are many things to consider.
+Building Kubernetes Clusters on various Cloud/Infrastructure environments can be a non-trivial task, from an operations perspective there are many things to consider.
 
 1. What Base Image should be used to build clusters nodes? and what packages should be in them to make the nodes secure by default?
 2. Since Kubernetes needs different Drivers for various Cloud Providers to enable Storage and Networking consumption,each cluster on a cloud provider needs different packages to be installed, how does one automate all of this? 
-3. Once these clusters are created, how do you provide Development teams authorized access to the Kubernetes API?
-4. Since Kubernetes lets development teams provision storage and networking objects, How do you ensure capacity management?
+3. Once these clusters are created, how do you provide Development teams authorized access to the Kubernetes API? The Kubernetes API is pretty powerful and can make infrastructure changes.
+4. Since Kubernetes lets development teams provision storage and networking objects, How do you ensure consistent capacity management?
 
 Tanzu for Kubernetes Operations provides Automated solution to make provisioning Kubernetes Clusters simple, secure and efficient.
 
 ## Provision Kubernetes Clusters via Tanzu Kubernetes Grid
 
-**Tanzu Kubernetes Grid** will help automate the Provisioning of Clusters on various Public/Hybrid or Datacenter Environments. Tanzu Kubernetes Grid Provisions a `Management Cluster` that understands the Cloud/Infrastructure the cluster is provisioned on. Once the `Management Cluster` is created it can be used to create many `Workload Clusters`. Tanzu Kubernetes Grid understands the various clouds primitives needed to build a Kubernetes Cluster. For e.g, when building a cluster on vSphere it will use vCenter to Provision Kubernetes nodes as Virtual Machines, deploy a CSI driver that will use `Datastores` for Storage and will use vDS + `AVI Advanced Load Balancer` to build Network Services. Similarly when Tanzu Kubernetes Grid is used on AWS, it will provision a cluster by deploying EC2 instances for cluster nodes, EBS to provision storage and VPC + ELB to build Network services.
+![Tanzu Kubernetes Build](../images/day1-build.png)
+
+**Tanzu Kubernetes Grid** will help automate the Provisioning of Clusters on various Public/Hybrid or Datacenter Environments. Tanzu Kubernetes Grid Provisions a `Management Cluster` that understands the Cloud/Infrastructure the cluster is provisioned on. Once the `Management Cluster` is created it can be used to create many `Workload Clusters`. Tanzu Kubernetes Grid understands the various clouds primitives needed to build a Kubernetes Cluster. For e.g, when building a cluster on vSphere it will use vCenter to Provision Kubernetes nodes as Virtual Machines, deploy a CSI driver that will use `Datastores` for Storage and will use vDS + `NSX Advanced Load Balancer` to build Network Services. Similarly when Tanzu Kubernetes Grid is used on AWS, it will provision a cluster by deploying EC2 instances for cluster nodes, Elastic Block Storage (EBS) to provision storage and Virtual Private Cloud (VPC) + Elastic Load Balancers (ELB) to build Network services.
 
 ## Using Tanzu Mission Control to Provision Workload Clusters and provide Self-service Access
 
