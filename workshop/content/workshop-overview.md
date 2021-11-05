@@ -1,4 +1,4 @@
-![TKO Overview](images/tko-overview.png)
+![TKO Overview](images/tko-architecture.png)
 
 Tanzu for Kubernetes Operations helps operations team build, manage, secure and monitor  consistent Kubernetes platform at scale across on-premises, public clouds, and edge.
 
