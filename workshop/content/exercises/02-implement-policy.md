@@ -41,43 +41,52 @@ Notice the pods do get created because default PSP is disabled on this cluster.
 kubectl get pods -n {{session_namespace}}
 ```
 
-- Deploy an app with root privileges on the cluster `gke-psp-demo` that has default PSP enabled on it in cluster group `tko-psp-demo`
+Now, let's deploy the same app with root privileges on the cluster `gke-psp-demo` which is part of the Cluster Group `tko-psp-demo`. This Cluster Group and hence the cluster has default PSP enabled on it.
+
 - Fetch Kubeconfig for the cluster
-  - Locate the cluster `gke-psp-demo` under the clusters page and click on it.
+  - Go to the the Tanzu Mission Control tab, Locate the cluster `gke-psp-demo` under the clusters page and click on it.
   - Click Actions from the top right hand side of the page and click `Access This CLuster`
   - Click on `view YAML`
-  - Copy the YAML  config
-  - Paste the value in a Config File, the below commnad will open an editor
+  - Copy the YAML  config , there is a small button to copy the entire text.
+  - Click `Ok` button.
+  - Go to the Workshop tab, Paste the value in a Config File, the below command will open an editor
   
 ```editor:append-lines-to-file
 file: ~/kubeconfig-gke-psp-demo.yaml
 text: |
 ```
-
+- Once the empty file appears, paste the `kubeconfig` 
 Note: Once pasted, make sure to hit `CTL+S`
 
-- Login to TMC
-  - Fetch API Token for TMC, click on the dropdown of your username on the top right hand corner of Tanzu Mission Control, click " My Account" -->Click on the `API tokens` tab, copy existing Token or click on `Generate a new API Token` and copy that.
-  - 
+- Login to TMC using the CLI, Go back to Tanzu Mission Control tab
+  - Fetch API Token for TMC, click on the dropdown of your username on the top right hand corner of Tanzu Mission Control, click " My Account" -->Click on the `API tokens` tab, click on `Generate a new API Token` if you don't have one, if you do have one click on `REGENERATE` to create a new one and and copy that, hit `Continue`
+
+
+  - Go to the Workshop page,on the `Terminal` tab
+- 
 ```execute
 tmc login 
 ```
-When Prompted to Provide the API Token, paste the one that oyu just copied. Give a context name like `tmc-tko` and `aws-hosted` for `Mangement_cluster` and `aws` for Provisioner name, like shown in the below snapshot.
+When Prompted to Provide the API Token, paste the one that oyu just copied. Give a context name like `tmc-tko` and `aws-hosted` for `Management_cluster` and `aws` for Provisioner name, like shown in the below snapshot.
 
 ![TMC Access Token](../images/tmc-access-api.png)
 
   - Deploy the same `nginx` application on this cluster 
   
 ```execute
-kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml create deployment nginx --image=nginx -n {{session_namespace}}
+kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml create deployment nginx --image=nginx 
 ```
 Notice, the pods do not get created
 
 ```execute
-kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml get pods  -n {{session_namespace}}
+kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml get pods
 ```
-This is because the PSP policy is enabled on the cluster.
+This is because the PSP policy is enabled on the cluster is blocking any cluster needing Privileged Mode / Root access implemented by Tanzu Mission Control
 
+- `{Cleanup}` Delete the deplyment
+```execute
+kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml delete deployment nginx
+```
 ## Image Download Policy
 
 The best part about containers is they are ultra-portable. They can be layered like a cake to build brand new images. A Container image from the internet can be taken and used to add a new binary to build something custom. That's the appeal of containers. However, this means Application Development teams can download images from anywhere on the Internet and build new images inheriting vulnerabilities.
@@ -94,7 +103,7 @@ Tanzu Mission Control, part of the the Tanzu for Kubernetes Operations solution 
 
 Tanzu Mission control has Image based policies that can be applied to namespaces within a cluster. These policies can be applied fleet-wide across clusters and clouds by grouping namespaces together in a logical group called `workspaces`
 
-- Go to the tab with Tanzu Mission Control --> Click on `Policies`  from the left hand menu --> click on `Assignments`
+- Go to the tab with Tanzu Mission Control ( if you are in the `My Account` page,Click on `Vmware Cloud Service` on the top of the page, click on `Tanzu Mission Control` Button) --> Click on `Policies`  from the left hand menu --> click on `Assignments`
 - Click on the `Image Registry` tab --> Click on `Workspaces`
 - Select the workspace `tko-demo`
 - You will notice a Direct Image Registry Policy applied called `no-busybox`
@@ -105,9 +114,11 @@ You will notice this is a custom policy that blocks any container image that has
 
 - Add a new rule and take a look at the other Image based policies that can be applied.
 
-Let's try to deploy `BusyBox` image on the namespace `tko-image-policy ` in the cluster `gke-psp-demo`
+Let's try to deploy `BusyBox` image on the namespace `tko-image-policy ` which is part of the cluster `gke-psp-demo`
 
-- Make sure the namespace exists on the cluster
+- Go to the Workshop tab
+
+- Make sure the namespace `tko-image-policy` exists on the cluster
 ```execute
 kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml get ns
 ```
@@ -115,30 +126,32 @@ kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml get ns
 - Create a deployment with the image`busybox` from Docker Hub
 
 ```execute
-kubectl --kubeconfig=kubeconfig-gke-psp-demo.yml create deployment busybox --image=busybox -n tko-image-policy
+kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml create deployment busybox --image=busybox -n tko-image-policy
 ```
 
 Notice the deployment is stuck and wont progress because of the image rules
 ```execute
-kubectl --kubeconfig=kubeconfig-gke-psp-demo.yml describe deployment busybox -n tko-image-policy
+kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml describe deployment busybox -n tko-image-policy
 ```
 Notice the deployment isn't creating any replicas.
 - `{Cleanup}` Delete the deplyment
 ```execute
-kubectl --kubeconfig=kubeconfig-gke-psp-demo.yml delete deployment busybox -n tko-image-policy
+kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml delete deployment busybox -n tko-image-policy
 ```
 ## Quota Policies
 
 Application Development teams love Kubernetes cause they can request infrastructure resources like compute, network and storage for running their apps without having to deal with Operations team or raise a Ticket to provision things. However, on the flip side, this means the teams managing the platform need to be aware of the capacity they have and implement any quota/restrictions on consumption. Tanzu Mission Controls Quota based policy allows you to do just that from an operations perspective.
 
 - Go to the tab with Tanzu Mission Control --> Click on `Policies` --> `Assignments`
-- Click on the tab `Quota`, select the `Cluster Group` : `tko-psp-demo`
+- Click on the tab `Quota`, select `Cluster`, Click on  `Cluster Group` : `tko-psp-demo`
 - Notice the Direct Quota Policy applied `quota-large` -->expand it and click `EDIT`
 - Notice it has been assigned an quota to limit of 2 vCPU and 2 GB of memory per workload.
 - You can opt to create a `custom` policy, if you don't want to use any of the pre-defined ones.
 
 This is how Tanzu Mission Control will help set individual workload limits/Quota.
 
+- Exit out of the wizard
+- 
 ## Implement mTLS for Application Services across Multiple CLouds
 
 If you have developed an application from the ground up to be cloud native and easily portable across clouds, you often have a lot of flexibility when it comes to where you deploy.  But from what we've seen, that isn't most applications.  You have issues of data gravity that keep certain services more tied to a specific deployment location.
