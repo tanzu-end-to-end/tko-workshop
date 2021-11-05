@@ -1,7 +1,7 @@
 Tanzu for Kubernetes Operations provides solutions that helps teams on :
 
     - Day 0: 
-      - Help Provision Clusters across Clouds and Datacenters
+      - Help Provision Clusters across Clouds and Datacenter's
       - Attach any existing clusters for easier management
       - Provide Access Policies to the Kubernetes API with Authenticated with Enterprise Identity Services
 

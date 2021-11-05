@@ -14,6 +14,7 @@ Go to the tab with Tanzu Mission Control on it,
 - Click on the three dots next to the target `tko-dataprotection-target`, and click Edit.
 - Notice, the `Cluster Groups` this target is associated to :`tko-psp-demo`
 - Any Clusters in that CLuster Group can now start being backed up using this target location
+- 
 
 Let's take a look at the backup and restore functions
 
