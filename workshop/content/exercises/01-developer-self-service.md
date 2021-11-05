@@ -15,11 +15,11 @@ Tanzu for Kubernetes Operations provides Automated solution to make provisioning
 
 ## Using Tanzu Mission Control to Provision Workload Clusters and provide Self-service Access
 
-Once the Management Clusters are created they can be added to Tanzu Mission Control for easier access and visibility. A team can be given access to create more workload clusters. Also, Tanzu Mission Control can be used to `Attach` any clusters that were not built using Tanzu Kubernetes Grid. These cluster can then be bundles together in `Cluster Groups` to apply common policies.
+Once the Management Clusters are created on a given Cloud/Infrastructure, they can be added to Tanzu Mission Control for easier access and visibility. A DevOps team can be given access to create more workload clusters. Also, Tanzu Mission Control can be used to `Attach` any clusters that were not built using Tanzu Kubernetes Grid. These cluster can then be bundled together in `Cluster Groups` to apply common policies.
 
 - Click on the Tanzu Mission Control Tab, click on `Clusters` from the left hand navigation.
 - Notice Clusters from vSphere, AWS, Azure Google Cloud listed
-- Click on `Cluster Groups` on the left hand Navigation pane, view how different clusters from different cloud Providers can be grouped together. This grouping will help us apply common policies that we will cover in the next chapter.
+- Click on `Cluster Groups`, and click on the group `end-to-end` on the left hand Navigation pane, view how different clusters from different cloud Providers can be grouped together. This grouping will help us apply common policies that we will cover in the next chapter.
 
 ### Create Workload Clusters
 
@@ -33,7 +33,7 @@ Note: Do not hit `create cluster` at the end of this workflow, and if you do cre
 
 For e.g, see the below screen shot of the wizard
 
-![Cluster Create](../images/aws-cluster-create.png)
+![Cluster Create](../images/vsphre-cluster-create.png))
 
 Note: Please Do not hit `create cluster` at the end of this workflow, and if you do create a cluster please delete them once the demo is over.
 
