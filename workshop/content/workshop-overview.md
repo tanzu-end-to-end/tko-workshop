@@ -20,6 +20,7 @@ For Day 2, Monitor & Analyse Full stack Metrics and Logs.
 Day 0-n,
 
 - Upgrade Clusters to the latest Kubernetes Version automatically
+- Scale Clusters based on demand
 - Backup/Restore cluster resources including persistent volumes
 
 This demo will walk you through the important capabilities that are available in Tanzu for Kubernetes Operations.
