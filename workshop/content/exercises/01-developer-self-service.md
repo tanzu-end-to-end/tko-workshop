@@ -15,7 +15,7 @@ Tanzu for Kubernetes Operations provides Automated solution to make provisioning
 
 ## Using Tanzu Mission Control to Provision Workload Clusters and provide Self-service Access
 
-Once the Management Clusters are created on a given Cloud/Infrastructure, they can be added to Tanzu Mission Control for easier access and visibility. A DevOps team can be given access to create more workload clusters. Also, Tanzu Mission Control can be used to `Attach` any clusters that were not built using Tanzu Kubernetes Grid. These cluster can then be bundled together in `Cluster Groups` to apply common policies.
+Once the Management Clusters are created on a given Cloud/Infrastructure, they can be added to Tanzu Mission Control for easier access and visibility. A DevOps team can be given access to create more workload clusters. Also, Tanzu Mission Control can also be used to `Attach` any CNCF Conformant clusters that were not built using Tanzu Kubernetes Grid. These cluster can then be bundled together in `Cluster Groups` to apply common policies.
 
 - Click on the Tanzu Mission Control Tab, click on `Clusters` from the left hand navigation.
 - Notice Clusters from vSphere, AWS, Azure Google Cloud listed
