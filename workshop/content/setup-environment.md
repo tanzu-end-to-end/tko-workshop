@@ -20,7 +20,7 @@ url: https://tanzuendtoend.tmc.cloud.vmware.com/clusters
 ## Tanzu Observability
 Open a tab to Tanzu Observability for your Pet Clinic Dashboard.  First, you will need to sign in to the following Wavefront instance.
 ```dashboard:open-url
-url: https://vmware.wavefront.com/dashboards/integration-kubernetes-clusters#_v01(g:(d:7200,ls:!t,s:1636128801),p:(cluster_name:(m:(Label:pez-tools.attached.attached.tmc),s:Label)))
+url: https://vmware.wavefront.com/dashboards/integration-kubernetes-clusters#_v01(g:(d:7200,ls:!t,s:1636475440,w:'2h'),p:(cluster_name:(d:Label,f:TAG_KEY,k:cluster,l:cluster,m:(Label:'*',Label_392:e2e-catalog.attached.attached.tmc),q:'collect(max(ts(%22kubernetes.cluster.cpu.limit%22),%20cluster),%20taggify(1,%20cluster,%20%22*%22))',s:Label_392),clusters_group_by:(h:t,v:none),clusters_metric:(h:t,v:'CPU%20Usage')))
 ```
 
 If you are having trouble accessing this instance, make sure you have the Wavefront-sandbox app added to your Workspace One account.  You can access that app at https://myvmware.workspaceair.com/catalog-portal/ui#/apps/details/WORKSPACE-d689139a-9b94-4b6f-aa23-915763e9b149-Web-Saml20, and then try to click the link above.
