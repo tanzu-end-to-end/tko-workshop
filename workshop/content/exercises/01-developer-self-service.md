@@ -52,3 +52,8 @@ Note: Please Do not hit `create cluster` at the end of this workflow, exit the w
 - A user from the organizations identity provider can be added with an email ID or an imported drop-down list.
 - Exit out of th wizard by clicking the `Cancel` button.
 - Notice the existing role binding given to the `Tanzu Dev user`
+
+Tanzu Mission Control has two methods to applying policies, they are applied in a hierarchy. The root of this hierarchy is the Organization in Tanzu Mission Control. Cluster Groups and clusters part of the groups are the second and third levels. So are Workspaces and Namespaces part of the workspaces. A policy applied at any level is carried forward to all other levels. Hence you might see Inherited Policies. Direct Policies can be applied to any object/level as well. Direct policies supersede Inherited policies.
+
+The access policies applied above to the Cluster Group `tko-psp-demo` will be applied to all the clusters that are added to this group later on as well.
+
