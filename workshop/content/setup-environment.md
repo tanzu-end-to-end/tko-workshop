@@ -14,7 +14,7 @@ url: https://console.cloud.vmware.com
 
 Open a tab for Tanzu Mission Control
 ```dashboard:open-url
-url: https://tanzuendtoend.tmc.cloud.vmware.com/clustergroups/tko-psp-demo/overview
+url: https://tanzuendtoend.tmc.cloud.vmware.com/clusters
 ```
 
 ## Tanzu Observability
