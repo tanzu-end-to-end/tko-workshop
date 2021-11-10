@@ -4,7 +4,8 @@ Tanzu for Kubernetes Operations enables you to offer observability capabilities 
 
 ![Tanzu Observability](../images/to.png)
 
-* In the TMC browser tab, click on the three vertical dots next to the "Tanzu Observability by Wavefront" item in the "Integrations" section for the "pez-tools" cluster and select "Open".  
+* In the TMC browser tab, click on `Clusters` from the left hand navigation menu. Click on the cluster name `e2e-acme` from the list of clusters. Observe, for this cluster Tanzu Observability Integration is already enabled. Click on `Actions` button on the top-right-hand corner --> Click on `Integrations`, Show how easy it is to enable a cluster to start sending metrics to Tanzu Observability
+* On the same screen, under the `Integrations` section, Click on the link `Tanzu Observability`
 * Explore the graphs and data a bit.  Show the overall cluster view that you start in, but then click on the "Nodes" link in the "Kubernetes Objects" panel near the top of the dashboard.  This highlights that TO gives you multiple perspectives to assess the health of your clusters and infrastructure.  
 * Highlight that TO creates these default views for you so that you immediately start getting value without having to create your own dashboards from scratch.  However, these view are completely customizable.  Click the three dots in the upper righthand corner and select "Clone" to show how you could customize the dashboard to your preferences by moving graphs around, adding new graphs, etc.  
   * Make sure to go back and delete this cloned dashboard if you actually show the interface.  
