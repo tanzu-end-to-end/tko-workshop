@@ -26,8 +26,7 @@ Once the Management Clusters are created on a given Cloud/Infrastructure, they c
 Note: Do not hit `create cluster` at the end of this workflow, and if you do create a cluster please delete them once the demo is over.
 
 - From the left-hand side menu, click on `clusters`. Click on the `Create Cluster` button on the right hand side.
-- You will see management clusters for AWS and vSphere listed on the next screen.
-- Select any one Management Cluster and click the button `Continue to Create Cluster`
+- Select the `aws-hosted` management cluster and click the button `Continue to Create Cluster`
 - Notice, how we just have to provide details like `cluster name`, `cluster type` , rest of the details needed are pre-populated and selectable via drop-down
 - Hitting the `Create Cluster` button at the end of the wizard will start provisioning the Workload cluster
 
