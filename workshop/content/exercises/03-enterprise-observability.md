@@ -2,6 +2,8 @@ A key part of operating resilient cloud applications is monitoring them.  But it
 
 Tanzu for Kubernetes Operations enables you to offer observability capabilities as a service to your developers and operators.  And Tanzu accelerates your teams by providing out of the box views of application and infrastructure KPIs that are fully customizable.
 
+![Tanzu Observability](../images/to.png)
+
 * In the TMC browser tab, click on the three vertical dots next to the "Tanzu Observability by Wavefront" item in the "Integrations" section for the "pez-tools" cluster and select "Open".  
 * Explore the graphs and data a bit.  Show the overall cluster view that you start in, but then click on the "Nodes" link in the "Kubernetes Objects" panel near the top of the dashboard.  This highlights that TO gives you multiple perspectives to assess the health of your clusters and infrastructure.  
 * Highlight that TO creates these default views for you so that you immediately start getting value without having to create your own dashboards from scratch.  However, these view are completely customizable.  Click the three dots in the upper righthand corner and select "Clone" to show how you could customize the dashboard to your preferences by moving graphs around, adding new graphs, etc.  
