@@ -1,12 +1,72 @@
 One of the key reason Kubernetes has grown so popular is, It provides Application Development teams a single API to drive infrastructure according to their application requirements. Application Development teams do not need to understand how the backend infrastructure runs, whether its a Public/Hybrid cloud or on-prem Datacenter. If they need a storage volume provisioned or a Load Balancer Provisioned, it's a simple Kubernetes API call away. Kubernetes drives the backend infrastructure based on the API call request and provisions/changes Compute, Storage and Network accordingly.
 
-While this Kubernetes capability makes the day to day lot more streamlined and simplified for Application Development teams, it also gives Development teams unbound access to the Infrastructure. They can drive as many storage volumes, compute instances or Load Balancers needed etc. They can drive external traffic to applications/databases within the security perimeter of an Organization, or expose internal data. They can run rouge containers with vulnerabilities etc. As such, running Kubernetes platform with appropriate polices that implement security best practices is imperative.
+While this Kubernetes capability makes the day to day lot more streamlined and simplified for Application Development teams, it also gives Development teams unbound access to the Infrastructure. They can drive as many storage volumes, compute instances or Load Balancers needed, drive external traffic to applications/databases within the security perimeter of an Organization, or expose internal data. They can deploy containers from the internet with vulnerabilities etc. As such, running Kubernetes platform with appropriate polices that implement security best practices is imperative.
+
+
+    - How do you ensure consistently applied RBAC?
+    - How do you control where containers come from and are deployed to your clusters?
+    - How do you ensure network traffic is limited appropriately between pods?
+    - How do you allow pods to have the correct level of permissions to the underlying host to function but not more?
+    - How can you allow for multi-tenancy within a cluster, allowing teams to consume their share of resources?
+
 
 Tanzu Mission Control provides out of the box policies that can be applied in a blanket mode to Kubernetes Clusters across multiple cloud and on-prem environments. Tanzu Mission Control also provides a way to build custom polices based on an Organizations unique requirements.
 
 ## Implement Secure access policy
 
 Kubernetes defines various Role based access Control policies to its API. Tanzu Mission Control allows a user from a Federated Identity to be mapped to various RBAC polices, providing a way to give right level of API access. We already saw this in the end of the previous Chapter. 
+
+## Image Download Policy
+
+The best part about containers is they are ultra-portable. They can be layered like a cake to build brand new images. A Container image from the internet can be taken and used to add a new binary to build something custom. That's the appeal of containers. However, this means Application Development teams can download images from anywhere on the Internet and build new images inheriting vulnerabilities.
+
+There are multiple ways to implement policies that make sure container images that get deployed are safe. 
+
+- Implement Vulnerability Scanning in the container Registry that stores the container images, and prevents images with critical vulnerabilities from being deployed (Harbor)
+- Implement Policies to not allow images from certain Image Registries (TMC)
+- Policy that prevents container images with no digest from deploying (TMC)
+- Stop container images with latest tag from deploying. (TMC)
+- Blacklist certain images/repo's (TMC)
+
+Tanzu Mission Control, part of the the Tanzu for Kubernetes Operations solution provides out of the box policies that can be applied to a fleet of clusters spread across Multiple Clouds.
+
+Tanzu Mission control has Image based policies that can be applied to namespaces within a cluster. These policies can be applied fleet-wide across clusters and clouds by grouping namespaces together in a logical group called `workspaces`
+
+- Go to the tab with Tanzu Mission Control ( if you are in the `My Account` page,Click on `Vmware Cloud Service` on the top of the page, click on `Tanzu Mission Control` Button) --> Click on `Policies`  from the left hand menu --> click on `Assignments`
+- Click on the `Image Registry` tab --> Click on `Workspaces`
+- Select the workspace `tko-demo`
+- You will notice a Direct Image Registry Policy applied called `no-busybox`
+- Expand the policy `no-busybox` and click `EDIT` --> Click the first `Rule`
+
+You will notice this is a custom policy that blocks any container image that has the name `busybox` on it. Like below
+![TMC Image Policy](../images/tmc-image-policy.png)
+
+- Add a new rule and take a look at the other Image based policies that can be applied.
+
+Let's try to deploy `BusyBox` image on the namespace `tko-image-policy ` which is part of the cluster `gke-psp-demo`
+
+- Go to the Workshop tab
+
+- Make sure the namespace `tko-image-policy` exists on the cluster
+```execute
+kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml get ns
+```
+
+- Create a deployment with the image`busybox` from Docker Hub
+
+```execute
+kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml create deployment busybox --image=busybox -n tko-image-policy
+```
+
+Notice the deployment is stuck and wont progress because of the image rules
+```execute
+kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml describe deployment busybox -n tko-image-policy
+```
+Notice the deployment isn't creating any replicas.
+- `{Cleanup}` Delete the deplyment
+```execute
+kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml delete deployment busybox -n tko-image-policy
+```
 
 ## Implement Pod Security Policies
 
@@ -87,57 +147,6 @@ This is because the PSP policy is enabled on the cluster is blocking any cluster
 ```execute
 kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml delete deployment nginx
 ```
-## Image Download Policy
-
-The best part about containers is they are ultra-portable. They can be layered like a cake to build brand new images. A Container image from the internet can be taken and used to add a new binary to build something custom. That's the appeal of containers. However, this means Application Development teams can download images from anywhere on the Internet and build new images inheriting vulnerabilities.
-
-There are multiple ways to implement policies that make sure container images that get deployed are safe. 
-
-- Implement Vulnerability Scanning in the container Registry that stores the container images, and prevents images with critical vulnerabilities from being deployed (Harbor)
-- Implement Policies to not allow images from certain Image Registries (TMC)
-- Policy that prevents container images with no digest from deploying (TMC)
-- Stop container images with latest tag from deploying. (TMC)
-- Blacklist certain images/repo's (TMC)
-
-Tanzu Mission Control, part of the the Tanzu for Kubernetes Operations solution provides out of the box policies that can be applied to a fleet of clusters spread across Multiple Clouds.
-
-Tanzu Mission control has Image based policies that can be applied to namespaces within a cluster. These policies can be applied fleet-wide across clusters and clouds by grouping namespaces together in a logical group called `workspaces`
-
-- Go to the tab with Tanzu Mission Control ( if you are in the `My Account` page,Click on `Vmware Cloud Service` on the top of the page, click on `Tanzu Mission Control` Button) --> Click on `Policies`  from the left hand menu --> click on `Assignments`
-- Click on the `Image Registry` tab --> Click on `Workspaces`
-- Select the workspace `tko-demo`
-- You will notice a Direct Image Registry Policy applied called `no-busybox`
-- Expand the policy `no-busybox` and click `EDIT` --> Click the first `Rule`
-
-You will notice this is a custom policy that blocks any container image that has the name `busybox` on it. Like below
-![TMC Image Policy](../images/tmc-image-policy.png)
-
-- Add a new rule and take a look at the other Image based policies that can be applied.
-
-Let's try to deploy `BusyBox` image on the namespace `tko-image-policy ` which is part of the cluster `gke-psp-demo`
-
-- Go to the Workshop tab
-
-- Make sure the namespace `tko-image-policy` exists on the cluster
-```execute
-kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml get ns
-```
-
-- Create a deployment with the image`busybox` from Docker Hub
-
-```execute
-kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml create deployment busybox --image=busybox -n tko-image-policy
-```
-
-Notice the deployment is stuck and wont progress because of the image rules
-```execute
-kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml describe deployment busybox -n tko-image-policy
-```
-Notice the deployment isn't creating any replicas.
-- `{Cleanup}` Delete the deplyment
-```execute
-kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml delete deployment busybox -n tko-image-policy
-```
 ## Quota Policies
 
 Application Development teams love Kubernetes cause they can request infrastructure resources like compute, network and storage for running their apps without having to deal with Operations team or raise a Ticket to provision things. However, on the flip side, this means the teams managing the platform need to be aware of the capacity they have and implement any quota/restrictions on consumption. Tanzu Mission Controls Quota based policy allows you to do just that from an operations perspective.
@@ -152,7 +161,7 @@ This is how Tanzu Mission Control will help set individual workload limits/Quota
 
 - Exit out of the wizard
 - 
-## Implement mTLS for Application Services across Multiple CLouds
+## Implement Mutual TLS (mTLS) for Application Services across Multiple CLouds
 
 If you have developed an application from the ground up to be cloud native and easily portable across clouds, you often have a lot of flexibility when it comes to where you deploy.  But from what we've seen, that isn't most applications.  You have issues of data gravity that keep certain services more tied to a specific deployment location.
 
