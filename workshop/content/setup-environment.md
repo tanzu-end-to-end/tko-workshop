@@ -25,17 +25,15 @@ You will need a `kubeconfig` from the `gke-psp-demo` cluster if you wish to vali
 - Copy the YAML config, there is a small button to copy the entire text.
 - Click `OK` button.
 - Go to the `Workshop` tab, paste the value in a config file, the below command will open an editor
-
 ```editor:append-lines-to-file
 file: ~/kubeconfig-gke-psp-demo.yaml
 text: |
 ```
 
 - Once the empty file appears, paste the contents of the `kubeconfig` copied from the previous steps.
-**Note**: Once pasted, make sure to hit `ctrl+s` to save
+  - **Note**: Once pasted, make sure to hit `ctrl+s` to save
 
 - Login to TMC using the CLI, Go back to Tanzu Mission Control tab
-
 ```execute
 tmc login
 ```
@@ -44,7 +42,7 @@ tmc login
 - Go back to the Workshop page, on the `Terminal` tab
 - When Prompted to provide the API Token, paste the API token you just copied. Give a context name like `tmc-tko` and `aws-hosted` for `Management_cluster` and `aws` for Provisioner name, like shown in the below snapshot.
 
-![TMC Access Token](../images/tmc-access-api.png)
+![TMC Access Token](images/tmc-access-api.png)
 
 ## Tanzu Observability
 Open a tab to Tanzu Observability for your Pet Clinic Dashboard.  First, you will need to sign in to the following Wavefront instance.
