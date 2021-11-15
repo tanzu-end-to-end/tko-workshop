@@ -14,8 +14,9 @@ Tanzu for Kubernetes Operations provides solutions that helps teams on :
       - Analyze and build actions based on metrics
 
     - Day "0-n"
-      - Efficiently manage Backup across a fleet aof clusters, build custom schedules
+      - Efficiently manage Backup across a fleet of clusters, build custom schedules
       - Upgrade clusters as newer versions of Kubernetes distribution are available.
+      - Scale Clusters automatically
 
 
 ## Tanzu Labs

@@ -23,4 +23,6 @@ Day 0-n,
 - Scale Clusters based on demand
 - Backup/Restore cluster resources including persistent volumes
 
+![TKO Operations](images/tko.png)
+
 This demo will walk you through the important capabilities that are available in Tanzu for Kubernetes Operations.

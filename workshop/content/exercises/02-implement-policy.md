@@ -103,6 +103,8 @@ kubectl get pods -n {{session_namespace}}
 
 Now, let's deploy the same app with root privileges on the cluster `gke-psp-demo` which is part of the Cluster Group `tko-psp-demo`. This Cluster Group and hence the cluster has default PSP enabled on it.
 
+First, let's fetch the `Kubeconfig` of the cluster `gke-psp-demo`
+
 - Fetch Kubeconfig for the cluster
   - Go to the the Tanzu Mission Control tab, Locate the cluster `gke-psp-demo` under the clusters page and click on it.
   - Click Actions from the top right hand side of the page and click `Access This CLuster`
@@ -130,6 +132,7 @@ tmc login
 When Prompted to Provide the API Token, paste the one that oyu just copied. Give a context name like `tmc-tko` and `aws-hosted` for `Management_cluster` and `aws` for Provisioner name, like shown in the below snapshot.
 
 ![TMC Access Token](../images/tmc-access-api.png)
+
 
   - Deploy the same `nginx` application on this cluster 
   
