@@ -15,9 +15,9 @@ Open a tab for Tanzu Mission Control
 url: https://tanzuendtoend.tmc.cloud.vmware.com/clusters
 ```
 
-## Workload Cluster `kubeconfig`
+## Workload Cluster kubeconfig
 
-You will need a `kubeconfig` from the `gke-psp-demo` cluster if you wish to validate the policies set in Tanzu Mission Control.  To fetch a `kubeconfig`:
+You will need a kubeconfig from the `gke-psp-demo` cluster if you wish to validate the policies set in Tanzu Mission Control.  To fetch a kubeconfig:
 
 - Go to the the Tanzu Mission Control tab, locate the cluster `gke-psp-demo` under the clusters page and click on it.
 - Click Actions from the top right hand side of the page and click **Access This Cluster**
@@ -30,7 +30,7 @@ file: ~/kubeconfig-gke-psp-demo.yaml
 text: |
 ```
 
-- Once the empty file appears, paste the contents of the `kubeconfig` copied from the previous steps.
+- Once the empty file appears, paste the contents of the kubeconfig copied from the previous steps.
   - **Note**: Once pasted, make sure to hit `ctrl+s` to save
 
 - Login to TMC using the CLI, go back to Tanzu Mission Control tab
@@ -53,7 +53,7 @@ url: https://vmware.wavefront.com/dashboards/integration-kubernetes-clusters#_v0
 If you are having trouble accessing this instance, make sure you have the Wavefront-sandbox app added to your Workspace One account.  You can access that app at https://myvmware.workspaceair.com/catalog-portal/ui#/apps/details/WORKSPACE-d689139a-9b94-4b6f-aa23-915763e9b149-Web-Saml20, and then try to click the link above.
 
 ## Tanzu Service Mesh
-Open tab to Tanzu Service Mesh to the `e2e-demo` Global namespace by clicking the link below.  If you don't see the graph for the Global Namespace showing the `e2e-acme` and `e2e-catalog` clusters, make sure to select the "Tanzu End to End" org, close the tab, and then reopen it again with the link below.
+Open tab to Tanzu Service Mesh to the `e2e-demo` Global namespace by clicking the link below.  If you don't see the graph for the Global Namespace showing the `e2e-acme` and `e2e-catalog` clusters, make sure to select the **Tanzu End to End** org, close the tab, and then reopen it again with the link below.
 ```dashboard:open-url
 url: https://prod-2.nsxservicemesh.vmware.com/global-namespaces-detail/e2e-demo/gns-topology
 ```

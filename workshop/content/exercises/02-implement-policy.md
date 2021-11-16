@@ -135,7 +135,7 @@ Application development teams love Kubernetes cause they can request infrastruct
 - Click on the tab **Quota**, select **Cluster** then click on **Cluster Group** > `tko-psp-demo`
 - Notice the Direct Quota Policy applied `quota-large`. Expand it and click **EDIT**
 - Notice it has been assigned an quota to limit of 2 vCPU and 2 GB of memory per workload.
-- You can opt to create a `Custom` policy if you don't want to use any of the pre-defined ones or you wish to implement more detailed policies on objects such as: CPU, memory, storage, or even limits on most Kubernetes objects within a namespace.
+- You can opt to create a custom policy if you don't want to use any of the pre-defined ones or you wish to implement more detailed policies on objects such as: CPU, memory, storage, or even limits on most Kubernetes objects within a namespace.
 
 Once complete, exit out of the wizard.
 
