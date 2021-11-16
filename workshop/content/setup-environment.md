@@ -45,7 +45,7 @@ tmc login
 ![TMC Access Token](images/tmc-access-api.png)
 
 ## Tanzu Observability
-Open a tab to Tanzu Observability for your Pet Clinic Dashboard.  First, you will need to sign in to the following Wavefront instance.
+Open a tab to Tanzu Observability.  First, you will need to sign in to the following Wavefront instance.
 ```dashboard:open-url
 url: https://vmware.wavefront.com/dashboards/integration-kubernetes-clusters#_v01(p:(cluster_name:(m:(Label:'e2e-amer.attached.attached.tmc'),s:Label)))
 ```
