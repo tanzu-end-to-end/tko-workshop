@@ -20,26 +20,31 @@ url: https://tanzuendtoend.tmc.cloud.vmware.com/clusters
 You will need a kubeconfig from the `gke-psp-demo` cluster if you wish to validate the policies set in Tanzu Mission Control.  To fetch a kubeconfig:
 
 - Go to the the Tanzu Mission Control tab, locate the cluster `gke-psp-demo` under the clusters page and click on it.
+
 - Click Actions from the top right hand side of the page and click **Access This Cluster**
-- Click on **view YAML**
-- Copy the YAML config, there is a small button to copy the entire text.
-- Click **OK** button.
-- Go to the **Workshop** tab, paste the value in a config file, the below command will open an editor
+
+- Click on **view YAML** and copy the YAML config (there is a small "copy" button that will copy the entire text)
+
+- Click **OK** button to dismiss the window.
+
+- Go to the **Workshop** tab and open a new editor by clicking the text below:
 ```editor:append-lines-to-file
 file: ~/kubeconfig-gke-psp-demo.yaml
 text: |
 ```
-
 - Once the empty file appears, paste the contents of the kubeconfig copied from the previous steps.
-  - **Note**: Once pasted, make sure to hit `ctrl+s` to save
 
-- Login to TMC using the CLI, go back to Tanzu Mission Control tab
+- Once pasted, make sure to hit `ctrl+s` to save the file.
+
+- Login to TMC using the CLI:
 ```execute
 tmc login
 ```
 
 - In Tanzu Mission Control, fetch an API Token by clicking on the dropdown of your username in the top right hand corner, click **My Account**, click on the **API tokens** tab, click on **Generate a new API Token**. If you need to re-issue an existing token, click on **REGENERATE** to create a new one and and copy the generated token then, click **Continue**.
+
 - Go back to the Workshop page, on the **Terminal** tab
+
 - When Prompted to provide the API Token, paste the API token you just copied. Give a context name like `tmc-tko` and `aws-hosted` for **Management Cluster Name** and `aws` for **Provisioner Name**, like shown in the below snapshot.
 
 ![TMC Access Token](images/tmc-access-api.png)
@@ -60,7 +65,7 @@ url: https://prod-2.nsxservicemesh.vmware.com/global-namespaces-detail/e2e-demo/
 
 # Tab Staging
 Reorder your tabs in this way so that your demo flow goes left to right:
-* This workshop
-* TMC
-* TO
-* TSM
+- This workshop
+- Tanzu Mission Control (TMC)
+- Tanzu Observability (TO)
+- Tanzu Service Mesh (TSM)
