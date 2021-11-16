@@ -113,9 +113,14 @@ Now we will deploy an app with root privileges on the cluster `e2e-amer` that ha
 kubectl create deployment nginx-{{session_namespace}} --image=nginx -n {{session_namespace}}
 ```
 
-- Notice the pods do get created because a default security policy is not enabled on this cluster.
+- Notice the pods **do** get created because a security policy blocking privilege escalation is not enabled on this cluster.
 ```execute
 kubectl get pods -n {{session_namespace}}
+```
+
+- Delete the deployment
+```execute
+kubectl delete deployment nginx-{{session_namespace}}
 ```
 
 Now let's deploy the same app with root privileges on the cluster `gke-psp-demo` which is part of the Cluster Group `tko-psp-demo`. This Cluster Group and hence the cluster has `psp-strict` security policy enabled on it.

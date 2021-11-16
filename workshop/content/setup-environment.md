@@ -23,7 +23,7 @@ You will need a kubeconfig from the `gke-psp-demo` cluster if you wish to valida
 
 - Click Actions from the top right hand side of the page and click **Access This Cluster**
 
-- Click on **view YAML** and copy the YAML config (there is a small "copy" button that will copy the entire text)
+- Click on **View YAML** and copy the YAML config (there is a small "copy" button that will copy the entire text)
 
 - Click **OK** button to dismiss the window.
 
@@ -53,6 +53,11 @@ tmc login
 - When Prompted to provide the API Token, paste the API token you just copied. Give a context name like `tmc-tko` and `aws-hosted` for **Management Cluster Name** and `aws` for **Provisioner Name**, like shown in the below snapshot.
 
 ![TMC Access Token](images/tmc-access-api.png)
+
+- Validate that you are able to communicate with the GKE cluster by checking the Kubernetes server version:
+```execute
+kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml version --short=true
+```
 
 ## Tanzu Observability
 Open a tab to Tanzu Observability.  First, you will need to sign in to the following Wavefront instance.
