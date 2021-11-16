@@ -30,9 +30,9 @@ Once the management clusters are created on a given cloud/infrastructure, they c
 - Notice, how we just have to provide details like **cluster name**, **cluster type**, rest of the details needed are pre-populated and selectable via drop-down
 - Hitting the **Create Cluster** button at the end of the wizard will start provisioning the Workload cluster
 
-For example, see the below screen shot of the wizard
+For example, see the below screen shot of the wizard:
 
-![Cluster Create](../images/aws-cluster-create.png))
+![Cluster Create](../images/aws-cluster-create.png)
 
 **Note**: Do not hit **Create Cluster** at the end of this workflow, exit the wizard by clicking on the **Cluster** list on the left hand side page. If you do create a cluster, please delete it once the demo is over.
 
@@ -52,6 +52,6 @@ For example, see the below screen shot of the wizard
 - Exit out of the wizard by clicking the **Cancel** button.
 - Notice the existing role binding given to the **Tanzu Dev user**
 
-Tanzu Mission Control has three methods to applying policies that are applied in a hierarchy. The root of this hierarchy is the Organization in Tanzu Mission Control. Next are Cluster Groups and the individual clusters. Workspaces and Namespaces make up the Workspaces. A policy applied at any lower level is carried forward to all furtherlevels. Hence you might see Inherited Policies. Direct Policies can be applied to any object/level as well. Direct policies supersede Inherited policies.
+Tanzu Mission Control has three methods to applying policies that are applied in a hierarchy. The root of this hierarchy is the Organization in Tanzu Mission Control. Next are Cluster Groups and the individual clusters. Workspaces and Namespaces make up the Workspaces. A policy applied at any lower level is carried forward to all further levels. Hence you might see Inherited Policies. Direct Policies can be applied to any object/level as well. Direct policies supersede Inherited policies.
 
 The access policies applied above to the Cluster Group `tko-psp-demo` will be applied to all the clusters that are added to this group later on as well so as you create new or attach existing clusters, they will automatically inherit the access control settings you have put in place.

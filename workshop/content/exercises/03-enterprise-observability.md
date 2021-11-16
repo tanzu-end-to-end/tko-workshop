@@ -12,7 +12,7 @@ Tanzu for Kubernetes Operations enables you to offer observability capabilities 
 
 - Highlight that Tanzu Observability creates these default views for you so that you immediately start getting value without having to create your own dashboards from scratch.  However, these views are completely customizable.
 
-- Click the three dots in the upper righthand corner and select **Clone** to show how you could customize the dashboard to your preferences by moving graphs around, adding new graphs, etc.
+- Click the three dots in the upper right hand corner and select **Clone** to show how you could customize the dashboard to your preferences by moving graphs around, adding new graphs, etc.
   - Make sure to go back and delete this cloned dashboard if you actually show the interface.
 
 - Back in the cluster view, click the **Pods** link in the **Kubernetes Objects** panel. Mention that these views have all been very infrastructure centric and that we can show views more specific to the application as well.
