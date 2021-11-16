@@ -122,7 +122,7 @@ kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml get pods
 
 This is because the PSP policy is enabled on the cluster is blocking any cluster needing Privileged Mode / Root access implemented by Tanzu Mission Control
 
-- Delete the deplyment
+- Delete the deployment
 ```execute
 kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml delete deployment nginx
 ```
