@@ -47,25 +47,25 @@ Let's validate that our image registry policy is working by trying to deploy the
 
 - Go to the **Workshop** tab so you can see the **Terminal**.
 
-- Make sure the namespace `tko-image-policy` exists on the cluster
+- (Optional) Make sure the namespace `tko-image-policy` exists on the cluster
 ```execute
 kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml get ns
 ```
 
 - Create a deployment with the image `busybox` from Docker Hub
 ```execute
-kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml create deployment busybox --image=busybox -n tko-image-policy
+kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml create deployment busybox-{{session_namespace}} --image=busybox -n tko-image-policy
 ```
 
-- Notice the deployment is stuck and wont progress because of the image rules:
+- Notice the deployment is blocked and won't progress because of the image rules:
 ```execute
-kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml describe deployment busybox -n tko-image-policy
+kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml get events --field-selector type=Warning -n tko-image-policy
 ```
-  Notice the deployment isn't creating any replicas.
+  Notice the admission webhook enforces the policy that has been set, blocking the deployment with `busybox`.
 
 - Delete the deployment
 ```execute
-kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml delete deployment busybox -n tko-image-policy
+kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml delete deployment busybox-{{session_namespace}} -n tko-image-policy
 ```
 
 ## Implement Network Policies
@@ -110,31 +110,31 @@ Now we will deploy an app with root privileges on the cluster `e2e-amer` that ha
 
 - Go to the workshop tab, on the **Terminal** Tab
 ```execute
-kubectl create deployment nginx --image=nginx -n {{session_namespace}}
+kubectl create deployment nginx-{{session_namespace}} --image=nginx -n {{session_namespace}}
 ```
 
-- Notice the pods do get created because default PSP is disabled on this cluster.
+- Notice the pods do get created because a default security policy is not enabled on this cluster.
 ```execute
 kubectl get pods -n {{session_namespace}}
 ```
 
-Now, let's deploy the same app with root privileges on the cluster `gke-psp-demo` which is part of the Cluster Group `tko-psp-demo`. This Cluster Group and hence the cluster has default PSP enabled on it.
+Now let's deploy the same app with root privileges on the cluster `gke-psp-demo` which is part of the Cluster Group `tko-psp-demo`. This Cluster Group and hence the cluster has `psp-strict` security policy enabled on it.
 
 - Deploy the same `nginx` application on this cluster
 ```execute
-kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml create deployment nginx --image=nginx
+kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml create deployment nginx-{{session_namespace}} --image=nginx
 ```
 
-- Notice, the pods do not get created
+- Notice that the admission webook blocks the creation due to privilege escalation being blocked:
 ```execute
-kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml get pods
+kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml get events --field-selector type=Warning
 ```
 
-This is because the PSP policy is enabled on the cluster is blocking any cluster needing Privileged Mode / Root access implemented by Tanzu Mission Control
+This is because the security policy is enabled on the cluster is blocking any cluster needing privileged mode/root access implemented by Tanzu Mission Control.
 
 - Delete the deployment
 ```execute
-kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml delete deployment nginx
+kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml delete deployment nginx-{{session_namespace}}
 ```
 
 ## Implement Quota Policies
