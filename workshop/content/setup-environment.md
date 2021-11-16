@@ -42,6 +42,11 @@ tmc login
 ```
 
 - In Tanzu Mission Control, fetch an API Token by clicking on the dropdown of your username in the top right hand corner, click **My Account**, click on the **API tokens** tab, click on **Generate a new API Token**. If you need to re-issue an existing token, click on **REGENERATE** to create a new one and and copy the generated token then, click **Continue**.
+  - **Note**: Your API token Scope should **at least** be set to:
+    - **Service Roles**: `Tanzu Mission Control`
+    - **OpenID scope**: `Enabled` (box checked)
+
+![TMC API Token Access](images/tmc-api-token-access.png)
 
 - Go back to the Workshop page, on the **Terminal** tab
 
