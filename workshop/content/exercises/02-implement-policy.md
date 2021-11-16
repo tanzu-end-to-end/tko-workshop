@@ -28,13 +28,13 @@ There are multiple ways to implement policies that make sure container images th
 
 Tanzu Mission Control, part of the the Tanzu for Kubernetes Operations solution provides out of the box policies that can be applied to a fleet of clusters spread across multiple clouds.
 
-Tanzu Mission control has Image based policies that can be applied to namespaces within a cluster. These policies can be applied fleet-wide across clusters and clouds by grouping namespaces together in a logical group called `workspaces`
+Tanzu Mission control has Image based policies that can be applied to namespaces within a cluster. These policies can be applied fleet-wide across clusters and clouds by grouping namespaces together in a logical group called **Workspaces**
 
-- Go to the tab with Tanzu Mission Control (if you are in the `My Account` page, click on `VMware Cloud Service` on the top of the page, click on `Tanzu Mission Control` button), click on `Policies`, from the left hand menu, click on `Assignments`
-- Click on the `Image Registry` tab then `Workspaces`
+- Go to the tab with Tanzu Mission Control (if you are in the **My Account** page, click on **VMware Cloud Service** on the top of the page, click on **Tanzu Mission Control** button), click on **Policies**, from the left hand menu, click on **Assignments**
+- Click on the **Image Registry** tab then **Workspaces**
 - Select the workspace `tko-demo`
 - You will notice a Direct Image Registry Policy applied called `no-busybox`
-- Expand the policy `no-busybox` and click `EDIT` then click the first `Rule`
+- Expand the policy `no-busybox` and click **EDIT** then click the first **Rule**
 
 You will notice this is a custom policy that blocks any container image that has the name `busybox` on it:
 ![TMC Image Policy](../images/tmc-image-policy.png)
@@ -43,7 +43,7 @@ You will notice this is a custom policy that blocks any container image that has
 
 Let's try to deploy the `busybox` image on the namespace `tko-image-policy` which is part of the cluster `gke-psp-demo`
 
-- Go to the `Workshop` tab
+- Go to the **Workshop** tab
 
 - Make sure the namespace `tko-image-policy` exists on the cluster
 ```execute
@@ -72,9 +72,9 @@ By default, Kubernetes provides an open, flat network which is often not desirab
 
 To view these policies:
 
-- Click on `Network` tab within the policy assignments section.
-- Click on `Workspaces` as network policies can only be applied to workspaces.
-- Click `Create Network Policy` to view the wizard, reviewing the options in the Network policy dropdown.
+- Click on **Network** tab within the policy assignments section.
+- Click on **Workspaces** as network policies can only be applied to workspaces.
+- Click **Create Network Policy** to view the wizard, reviewing the options in the Network policy dropdown.
 
 ## Implement Security Policies
 
@@ -84,21 +84,21 @@ By default, Tanzu Mission Control implements security policies around running po
 
 To view these policies:
 
-- Click on the `Security` tab within the policy assignments section.
-- Click on the root of the `Clusters` tree, on `Tanzu End to End`
-- Select the `Direct Policy` applied, `Dhubao-Strict` then click `edit`
+- Click on the **Security** tab within the policy assignments section.
+- Click on the root of the **Clusters** tree, on **Tanzu End to End**
+- Select the **Direct Policy** applied, `Dhubao-Strict` then click **edit**
 
 Notice all the Security Policies applied by default.
 
 Let's validate this by trying to deploy a container that needs privileged access to run.
 
-- On the `Security` tab, expand the Cluster Group `e2e-amer` and notice that cluster group has the policy `Dhubao-Strict` applied as an Inherited security policy.
+- On the **Security** tab, expand the Cluster Group `e2e-amer` and notice that cluster group has the policy `Dhubao-Strict` applied as an Inherited security policy.
 - Click on the Cluster Group `tko-psp-demo` and notice the Direct policy on it called `psp-strict`.
-- Edit this policy by clicking on it and selecting `edit`, notice this policy enforces the `Strict` default security template.
+- Edit this policy by clicking on it and selecting **edit**, notice this policy enforces the `Strict` default security template.
 
 Now we will deploy an app with root privileges on the cluster `e2e-amer` that has no default PSP enabled.
 
-- Go to the workshop tab, on the `Terminal` Tab
+- Go to the workshop tab, on the **Terminal** Tab
 ```execute
 kubectl create deployment nginx --image=nginx -n {{session_namespace}}
 ```
@@ -131,9 +131,9 @@ kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml delete deployment nginx
 
 Application development teams love Kubernetes cause they can request infrastructure resources like compute, network and storage for running their apps without having to deal with Operations team or raise a ticket to provision things. On the flip side, this means the teams managing the platform need to be aware of the capacity they have and implement any quota/restrictions on consumption. Tanzu Mission Control's Quota based policy allows you to do just that from an operations perspective.
 
-- Go to the tab with Tanzu Mission Control, click on `Policies` then `Assignments`
-- Click on the tab `Quota`, select `Cluster` then click on `Cluster Group` > `tko-psp-demo`
-- Notice the Direct Quota Policy applied `quota-large`. Expand it and click `EDIT`
+- Go to the tab with Tanzu Mission Control, click on **Policies** then **Assignments**
+- Click on the tab **Quota**, select **Cluster** then click on **Cluster Group** > `tko-psp-demo`
+- Notice the Direct Quota Policy applied `quota-large`. Expand it and click **EDIT**
 - Notice it has been assigned an quota to limit of 2 vCPU and 2 GB of memory per workload.
 - You can opt to create a `Custom` policy if you don't want to use any of the pre-defined ones or you wish to implement more detailed policies on objects such as: CPU, memory, storage, or even limits on most Kubernetes objects within a namespace.
 
@@ -151,8 +151,8 @@ Tanzu makes the process of connecting applications running across clouds simple 
 
 * Click on the tab for Tanzu Service Mesh
 * Show the Global Namespace called `e2e-demo`.  Point out this application is running on one cluster running TKG in AWS (e2e-acme) and one cluster that is running on EKS (e2e-catalog).
-* Show that we have an ingress gateway that is the main ingress for the application (istio-ingressgateway).  Highlight that the `catalog service` is running in the `e2e-catalog` cluster, and that we can see an mTLS protected, cross-cluster link between the shopping service and the catalog service.  No special rules had to be created to enable this, and this link is being completely managed by TSM.
-* Hover over the `catalog service` name in the graph and show the performance stats.  The value of exposing these KPIs right in the Service Mesh interface is to speed troubleshooting.
+* Show that we have an ingress gateway that is the main ingress for the application (istio-ingressgateway).  Highlight that the **catalog service** is running in the `e2e-catalog` cluster, and that we can see an mTLS protected, cross-cluster link between the shopping service and the catalog service.  No special rules had to be created to enable this, and this link is being completely managed by TSM.
+* Hover over the **catalog service** name in the graph and show the performance stats.  The value of exposing these KPIs right in the Service Mesh interface is to speed troubleshooting.
 * Next, let's look at how global namespaces are set up.  Click on the "Edit" button for the `e2e-demo` global namespace.  On the first page of the dialog, highlight that the "Domain" field is an arbitrary domain that you will use to refer to all the services in that namespace.  It doesn't need to be a registered domain, as this name is only used by services in the namespace to reach each other.  That domain is simply a signal to the mesh that it needs to look in the global namespace to resolve that domain name.
 * Click "Next" to go to the "Service Mapping" dialog.
 * In the "Service Mapping" dialog, highlight the mapping rules that onboard services into the new global namespace.  Point out we've selected a cluster and namespace combination for both clusters.  Open up the "Service Preview" section on each mapping rule to show the services that are mapped in.
