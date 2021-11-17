@@ -8,12 +8,49 @@ Click below to sign in.  If you can't see this organization, you can self-enroll
 url: https://console.cloud.vmware.com
 ```
 
+## Tanzu for Kubernetes Operators Overview
+
+Open a tab with the Tanzu for Kubernetes Operators "Day" Overview Slide
+```dashboard:open-url
+url: https://{{ session_namespace }}.{{ ingress_domain }}/workshop/content/images/tko.png
+```
+
 ## Tanzu Mission Control
 
 Open a tab for Tanzu Mission Control
 ```dashboard:open-url
 url: https://tanzuendtoend.tmc.cloud.vmware.com/clusters
 ```
+
+## Tanzu Observability
+Open a tab to Tanzu Observability. First, you will need to sign in to the following Wavefront instance.  I would **strongly** suggest that you pre-populate the following Tanzu Observability tabs as they may take a while to load, especially while screen sharing or if network bandwidth is an issue.
+
+- Kubernetes Cluster Dashboard for the `e2e-amer` Cluster:
+```dashboard:open-url
+url: https://vmware.wavefront.com/u/VsM2ww72Rv?t=vmware
+```
+
+- Service Dashboard for `tacocat`:
+```dashboard:open-url
+url: https://vmware.wavefront.com/u/5l7sXbcwVc?t=vmware
+```
+
+- Service Dashboard > Traces for `tacocat`:
+  - After opening the **TacoCat Service Dashboard**, find the **See All payments Traces** link on the upper left hand side
+
+  - Open the Traces link in a new tab
+
+If you are having trouble accessing this instance, make sure you have the Wavefront-sandbox app added to your Workspace One account.  You can access that app at https://myvmware.workspaceair.com/catalog-portal/ui#/apps/details/WORKSPACE-d689139a-9b94-4b6f-aa23-915763e9b149-Web-Saml20, and then try to click the links above.
+
+## Tanzu Service Mesh
+Open tab to Tanzu Service Mesh to the `e2e-demo` Global namespace by clicking the link below.  If you don't see the graph for the Global Namespace showing the `e2e-acme` and `e2e-catalog` clusters, make sure to select the **Tanzu End to End** org, close the tab, and then reopen it again with the link below.
+```dashboard:open-url
+url: https://prod-2.nsxservicemesh.vmware.com/global-namespaces-detail/e2e-demo/gns-topology
+```
+
+# Demo Environment Pre-Work
+
+You should complete the pre-work below to ensure that the example commands to validate the Tanzu Mission Control policies are functioning as expected.  If you are not going to include those verification steps, you can skip the Workload Cluster kubeconfig preparation.
 
 ## Workload Cluster kubeconfig
 
@@ -59,23 +96,12 @@ tmc login
 kubectl --kubeconfig=kubeconfig-gke-psp-demo.yaml version --short=true
 ```
 
-## Tanzu Observability
-Open a tab to Tanzu Observability.  First, you will need to sign in to the following Wavefront instance.
-```dashboard:open-url
-url: https://vmware.wavefront.com/dashboards/integration-kubernetes-clusters#_v01(p:(cluster_name:(m:(Label:'e2e-amer.attached.attached.tmc'),s:Label)))
-```
-
-If you are having trouble accessing this instance, make sure you have the Wavefront-sandbox app added to your Workspace One account.  You can access that app at https://myvmware.workspaceair.com/catalog-portal/ui#/apps/details/WORKSPACE-d689139a-9b94-4b6f-aa23-915763e9b149-Web-Saml20, and then try to click the link above.
-
-## Tanzu Service Mesh
-Open tab to Tanzu Service Mesh to the `e2e-demo` Global namespace by clicking the link below.  If you don't see the graph for the Global Namespace showing the `e2e-acme` and `e2e-catalog` clusters, make sure to select the **Tanzu End to End** org, close the tab, and then reopen it again with the link below.
-```dashboard:open-url
-url: https://prod-2.nsxservicemesh.vmware.com/global-namespaces-detail/e2e-demo/gns-topology
-```
-
 # Tab Staging
 Reorder your tabs in this way so that your demo flow goes left to right:
 - This workshop
+- Tanzu for Kubernetes Operators "Day" Overview Slide
 - Tanzu Mission Control (TMC)
-- Tanzu Observability (TO)
 - Tanzu Service Mesh (TSM)
+- Tanzu Observability (TO) - Kubernetes Dashboard for `e2e-amer`
+- Tanzu Observability (TO) - Service Dashboard for `tacocat`
+- Tanzu Observability (TO) - Service Dashboard > Traces for `tacocat`
