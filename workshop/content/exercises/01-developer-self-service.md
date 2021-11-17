@@ -66,3 +66,4 @@ For example, see the below screen shot of the wizard:
 Tanzu Mission Control has three methods to applying policies that are applied in a hierarchy. The root of this hierarchy is the Organization in Tanzu Mission Control. Next are Cluster Groups and the individual clusters. Workspaces and Namespaces make up the Workspaces. A policy applied at any lower level is carried forward to all further levels. Hence you might see Inherited Policies. Direct Policies can be applied to any object/level as well. Direct policies supersede Inherited policies.
 
 The access policies applied above to the Cluster Group `tko-psp-demo` will be applied to all the clusters that are added to this group later on as well so as you create new or attach existing clusters, they will automatically inherit the access control settings you have put in place.
+
