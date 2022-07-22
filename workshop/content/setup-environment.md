@@ -28,12 +28,12 @@ Open a tab to Tanzu Observability. First, you will need to sign in to the follow
 
 - Kubernetes Cluster Dashboard for the `e2e-amer` Cluster:
 ```dashboard:open-url
-url: https://vmware.wavefront.com/u/VsM2ww72Rv?t=vmware
+url: https://vmware.wavefront.com/u/rNsjycZJrF?t=map-sales-sandbox
 ```
 
 - Service Dashboard for `tacocat`:
 ```dashboard:open-url
-url: https://vmware.wavefront.com/u/5l7sXbcwVc?t=vmware
+url: https://vmware.wavefront.com/u/WYWCgR1V9d?t=map-sales-sandbox
 ```
 
 - Service Dashboard > Traces for `tacocat`:
