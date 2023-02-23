@@ -15,7 +15,7 @@ Tanzu for Kubernetes Operations provides automated solution to make provisioning
 
 ## Using Tanzu Mission Control to Provision Workload Clusters and provide Self-service Access
 
-Once the management clusters are created on a given cloud/infrastructure, they can be added to Tanzu Mission Control for easier access and visibility. A DevOps team can be given access to create more workload clusters. Also, Tanzu Mission Control can also be used to attach any CNCF conformant Kubernetes clusters that were not built using Tanzu Kubernetes Grid. These cluster can then be bundled together in Cluster Groups to apply common policies.
+Once the management clusters are created on a given cloud/infrastructure, they can be added to Tanzu Mission Control for easier access and visibility. A DevOps team can be given access to create more workload clusters. Also, Tanzu Mission Control can be used to attach any CNCF conformant Kubernetes clusters that were not built using Tanzu Kubernetes Grid. These cluster can then be bundled together in Cluster Groups to apply common policies.
 
 - Click on the Tanzu Mission Control Tab, click on **Clusters** from the left hand navigation.
 
@@ -43,7 +43,7 @@ For example, see the below screen shot of the wizard:
 
 ## Providing RBAC and Authentication to Development Teams
 
- Kubernetes API is very important as it has the capability of accessing and modifying infrastructure objects. Kubernetes has its won Role based access to the Kubernetes API that determine which user has what level of access. However, by default Kubernetes does not provide any Identity backed Authentication. Tanzu Mission Control provides the capability to automate role based access control to the API authenticated by your Organizations Identity services. VMware Cloud Services can federate to your LDAP, Active Directory, or SAML instance. Tanzu Mission Control will map a user from your organization to a role within the Kubernetes cluster. This is the access policy and can be applied in a blanket mode across clusters at once.
+ Kubernetes API is very important as it has the capability of accessing and modifying infrastructure objects. Kubernetes has its own Role based access to the Kubernetes API that determine which user has what level of access. However, by default Kubernetes does not provide any Identity backed Authentication. Tanzu Mission Control provides the capability to automate role based access control to the API authenticated by your Organizations Identity services. VMware Cloud Services can federate to your LDAP, Active Directory, or SAML instance. Tanzu Mission Control will map a user from your organization to a role within the Kubernetes cluster. This is the access policy and can be applied in a blanket mode across clusters at once.
 
 - Click on **Policies** from the left hand navigation menu, click **Assignments** then click on the **Access** tab.
 
