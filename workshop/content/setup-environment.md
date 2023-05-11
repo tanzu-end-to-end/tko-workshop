@@ -61,7 +61,7 @@ You will need a kubeconfig from the `gke-psp-demo` cluster if you wish to valida
 
 - Click Actions from the top right hand side of the page and click **Access This Cluster**
 
-- Click on **View YAML** and copy the YAML config (there is a small "copy" button that will copy the entire text)
+- Download the file locally (select 'tanzu' version) and open in any text editor.  Select all the content and copy. 
 
 - Click **OK** button to dismiss the window.
 
@@ -74,9 +74,9 @@ text: |
 
 - Once pasted, make sure to hit `ctrl+s` to save the file.
 
-- Login to TMC using the CLI:
+- Login to TMC using the CLI.  This will also configure the tanzu mission-control plug in (takes a couple minutes) :
 ```execute
-tmc login
+tanzu context create --endpoint tanzuendtoend.tmc.cloud.vmware.com --name end-to-end 
 ```
 
 - In Tanzu Mission Control, fetch an API Token by clicking on the dropdown of your username in the top right hand corner, click **My Account**, click on the **API tokens** tab, click on **Generate a new API Token**. If you need to re-issue an existing token, click on **REGENERATE** to create a new one and and copy the generated token then, click **Continue**.
